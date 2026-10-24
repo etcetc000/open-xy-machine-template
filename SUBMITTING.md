@@ -25,9 +25,9 @@ then put the same identity in your `machine.json`:
 ```
 
 `python sdk.py catalog check` in the Open-XY repository validates the catalog
-before you open the pull request.
-Until then, `sdk.py new` picks IDs that are free in the SDK, which is enough for
-your own builds.
+before you open the pull request. For your own builds you need no reservation:
+`sdk.py new` picks an identity that neither the bundled machines nor the
+catalog holds.
 
 ## 2. Meet the requirements
 
