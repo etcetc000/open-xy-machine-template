@@ -15,9 +15,9 @@ Each folder is one machine: `definition.json` (controls, presets, resources),
 synth, its artwork. `tests/` holds the machine's own checks.
 
 These are minimal starting points. For worked examples, published through the
-catalog, see [Karplus](https://github.com/etcetc000/open-xy-karplus), a
-plucked-string synth with an animated screen, and
-[Ping Pong](https://github.com/etcetc000/open-xy-pingpong), a send effect.
+catalog, see Open-XY's [core machines](https://github.com/etcetc000/open-xy-core-machines), among them
+[Karplus](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/karplus), a plucked-string synth with an animated screen, and
+[Ping Pong](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/pingpong), a send effect.
 
 ## Start
 
