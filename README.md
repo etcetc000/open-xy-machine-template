@@ -12,7 +12,8 @@ them by tagging, and the Open-XY catalog pins the version it ships.
 
 Each folder is one machine: `definition.json` (controls, presets, resources),
 `machine.json` (kind, SDK version, identity), its C++ and, for a synth, its
-artwork. `tests/` holds the machine's own checks.
+artwork. Instruments also include `presets/default.json`, their device starting
+sound. `tests/` holds the machine's own checks.
 
 ## Start
 
@@ -36,7 +37,13 @@ artwork. `tests/` holds the machine's own checks.
    python ../open-xy/tools/serve_harness.py --preview ../previews/<id>-001
    ```
 
-4. Check everything as CI does: records, sources, previews and your tests.
+4. Edit the generated `presets/default.json` to choose your instrument's
+   starting sound. Keep its `type` equal to your machine ID. Submissions must
+   include it in the release; see the SDK's
+   [default preset contract](https://github.com/etcetc000/open-xy/blob/staging/docs/api.md#default-preset).
+   Send effects use definition defaults and need no instrument preset.
+
+   Check everything as CI does: records, defaults, sources, previews and your tests.
 
    ```sh
    python ../open-xy/sdk.py test --machine machines/<id> --cxx clang++ --host-cxx g++

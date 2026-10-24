@@ -7,27 +7,25 @@ pins one tagged commit of it. You never copy code into Open-XY.
 
 ## 1. Reserve the identity
 
-A machine's ID, its engine or effect ID and its page are saved in every preset
-and project made with it, so they never change once published. Reserve them
-before you share anything:
+A machine's ID is saved in presets and must never change once published.
+Reserve it before you share anything:
 
 - **ID**: your `definition.json` `id`. A lowercase letter, then up to 14
   lowercase letters, digits or underscores, unused in the catalog.
-- **Synth**: a free engine ID and page. **Effect**: a free effect ID. Effect
-  IDs are scarce, so reserve one only for an effect you intend to publish.
+- Engine, effect and page numbers are assigned by each firmware's persistent
+  layout. `machine.json` requests numbers; they are not catalog fields.
 
 Open a pull request against the catalog that adds your machine as reserved,
-then put the same identity in your `machine.json`:
+using the same ID as your `definition.json`:
 
 ```json
-{"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
+{"id": "<id>", "kind": "synth",
  "maintainer": "<your GitHub user>", "status": "reserved"}
 ```
 
 `python sdk.py catalog check` in the Open-XY repository validates the catalog
 before you open the pull request. For your own builds you need no reservation:
-`sdk.py new` picks an identity that neither the bundled machines nor the
-catalog holds.
+`sdk.py new` suggests numbers that the bundled machines do not use.
 
 ## 2. Meet the requirements
 
@@ -41,6 +39,21 @@ catalog holds.
 | It fits beside the bundled machines in the shared 2044 KiB module | The firmware compile prints each machine's share |
 | A licence that allows redistribution in firmware: `LICENSE` at the root, and `vendor/LICENSE` for vendored code | Review |
 | A short `description` in `machine.json`; a builder `icon` is optional | `sdk.py test` |
+| Every synth/sample machine commits `presets/default.json` with its intended starting sound | `sdk.py test`, catalog fetch and published kit export |
+
+`sdk.py new` creates a synth's default. For an existing instrument, create it
+once, edit it, then commit it with your code:
+
+```sh
+python ../open-xy/sdk.py preset --machine machines/<id> --out machines/<id>/presets/default.json
+```
+
+Follow the SDK's [default preset contract](https://github.com/etcetc000/open-xy/blob/staging/docs/api.md#default-preset).
+The builder reads this file from the pinned release and installs it at
+`content/presets/<id>/default.json`, including in MTP installs and downloaded
+packages. No extra index or preset repository is needed. A repository with
+several machines includes one default in each instrument's folder. Send effects
+use definition defaults and have no standalone instrument preset.
 
 ## 3. Release and submit
 
@@ -48,7 +61,7 @@ catalog holds.
 2. Open a pull request against the catalog that changes your entry to:
 
    ```json
-   {"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
+   {"id": "<id>", "kind": "synth",
     "maintainer": "<your GitHub user>", "status": "published",
     "repository": "https://github.com/<you>/<repo>", "tag": "v1.0.0",
     "commit": "<the tag's full commit SHA>", "path": "machines/<id>"}
@@ -68,7 +81,7 @@ release, then the main site with the next Open-XY release.
 
 Tag a new version and open a pull request that moves your entry's `tag` and
 `commit`. It is checked the same way and reviewed as a diff. A change of ID or
-identity is refused: release a new machine instead.
+kind is refused: release a new machine instead.
 
 ## Removal
 
