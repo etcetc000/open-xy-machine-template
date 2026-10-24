@@ -17,9 +17,9 @@ that reserves it:
 ```
 
 Engine, effect and page numbers are not reserved: each firmware's layout gives
-them out and keeps them for its projects. In `machine.json`, ask for an engine
-from 34 to 62 (a page from 82 to 127; an effect from the free ones); a build
-uses them when they are free, otherwise the next free ones.
+them out and keeps them for its projects. The `identity` in `machine.json` is
+only a preference, which `sdk.py new` fills in; a build uses it when free,
+otherwise the next free numbers, so you can leave it as generated.
 `python sdk.py catalog check` in the Open-XY repository validates the catalog
 before you open the pull request. Your own builds need no reservation.
 
