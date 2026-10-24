@@ -16,8 +16,16 @@ before you share anything:
 - **Synth**: a free engine ID and page. **Effect**: a free effect ID. Effect
   IDs are scarce, so reserve one only for an effect you intend to publish.
 
-Open a pull request against the catalog that adds your machine with
-`"status": "reserved"`, then put the same identity in your `machine.json`.
+Open a pull request against the catalog that adds your machine as reserved,
+then put the same identity in your `machine.json`:
+
+```json
+{"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
+ "maintainer": "<your GitHub user>", "status": "reserved"}
+```
+
+`python sdk.py catalog check` in the Open-XY repository validates the catalog
+before you open the pull request.
 Until then, `sdk.py new` picks IDs that are free in the SDK, which is enough for
 your own builds.
 
@@ -40,15 +48,18 @@ your own builds.
 2. Open a pull request against the catalog that changes your entry to:
 
    ```json
-   {"id": "<id>", "repository": "https://github.com/<you>/<repo>", "tag": "v1.0.0",
-    "commit": "<the tag's full commit SHA>", "path": "machines/<id>",
-    "identity": {"engine": 12, "page": 90}, "maintainer": "<your GitHub user>",
-    "status": "published"}
+   {"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
+    "maintainer": "<your GitHub user>", "status": "published",
+    "repository": "https://github.com/<you>/<repo>", "tag": "v1.0.0",
+    "commit": "<the tag's full commit SHA>", "path": "machines/<id>"}
    ```
 
    `path` is the machine's folder in your repository (`"."` at the root).
 3. The catalog's CI fetches exactly that commit and runs the same checks as your
-   CI. A maintainer then reviews the code once, in full, and listens to it.
+   CI (`python sdk.py catalog test` runs them locally). A maintainer then
+   reviews the code once, in full, and listens to it. See the
+   [catalog](https://github.com/etcetc000/open-xy/blob/staging/docs/catalog.md)
+   for every field and what review covers.
 
 Merged machines reach the beta site (beta.open-xy.com) with the next catalog
 release, then the main site with the next Open-XY release.
