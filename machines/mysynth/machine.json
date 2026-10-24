@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "sdk": "1.0",
+  "kind": "synth",
+  "description": "My Synth",
+  "identity": {
+    "engine": 1,
+    "page": 84
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "sdk": "1.0",
+  "kind": "effect",
+  "description": "My Effect",
+  "identity": {
+    "effect": 2,
+    "page": 21
+  },
+  "dryParameter": "dry"
+}
