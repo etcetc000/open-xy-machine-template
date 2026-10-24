@@ -11,8 +11,13 @@ them by tagging, and the Open-XY catalog pins the version it ships.
 | [machines/myeffect](machines/myeffect) | Send effect: in-place stereo processing on the FX page |
 
 Each folder is one machine: `definition.json` (controls, presets, resources),
-`machine.json` (kind, SDK version, identity), its C++ and, for a synth, its
-artwork. `tests/` holds the machine's own checks.
+`machine.json` (kind, SDK version, the numbers it asks for), its C++ and, for a
+synth, its artwork. `tests/` holds the machine's own checks.
+
+These are minimal starting points. For worked examples, published through the
+catalog, see [Karplus](https://github.com/etcetc000/open-xy-karplus), a
+plucked-string synth with an animated screen, and
+[Ping Pong](https://github.com/etcetc000/open-xy-pingpong), a send effect.
 
 ## Start
 
@@ -42,12 +47,18 @@ artwork. `tests/` holds the machine's own checks.
    python ../open-xy/sdk.py test --machine machines/<id> --cxx clang++ --host-cxx g++
    ```
 
+   It also prints an estimate of the machine's CPU cost in Blackfin
+   instructions per block, with the limits to stay under
+   ([CPU](https://github.com/etcetc000/open-xy/blob/staging/docs/api.md#cpu)).
+
    Add `--firmware` once the pinned Blackfin tools are installed
    (`python ../open-xy/sdk.py toolchain fetch`) to compile the firmware module
    with your machines.
 5. Build firmware for your own OP-XY with
-   `python ../open-xy/sdk.py build --machine machines/<id> --stock-os ... --stock-content ... --out ...`
+   `python ../open-xy/sdk.py build --machine machines/<id> --stock-os <os.ldr from your OP-XY> --out ...`
    ([building firmware](https://github.com/etcetc000/open-xy/blob/staging/docs/build.md)).
+   Pass the previous build's `layout.json` with `--layout` so your machines
+   keep their numbers, and your projects their instruments.
 
 Keep build and preview output outside this repository: the SDK refuses output
 inside a machine folder.

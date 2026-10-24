@@ -5,29 +5,23 @@ The Open-XY builder ships the machines listed in its catalog,
 in the Open-XY repository. Your machine stays in your repository; the catalog
 pins one tagged commit of it. You never copy code into Open-XY.
 
-## 1. Reserve the identity
+## 1. Reserve the ID
 
-A machine's ID, its engine or effect ID and its page are saved in every preset
-and project made with it, so they never change once published. Reserve them
-before you share anything:
-
-- **ID**: your `definition.json` `id`. A lowercase letter, then up to 14
-  lowercase letters, digits or underscores, unused in the catalog.
-- **Synth**: a free engine ID and page. **Effect**: a free effect ID. Effect
-  IDs are scarce, so reserve one only for an effect you intend to publish.
-
-Open a pull request against the catalog that adds your machine as reserved,
-then put the same identity in your `machine.json`:
+Your machine's ID, the `definition.json` `id`, is saved in presets and is held
+for good: a lowercase letter, then up to 14 lowercase letters, digits or
+underscores, unused in the catalog. Open a pull request against the catalog
+that reserves it:
 
 ```json
-{"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
- "maintainer": "<your GitHub user>", "status": "reserved"}
+{"id": "<id>", "kind": "synth", "maintainer": "<your GitHub user>", "status": "reserved"}
 ```
 
+Engine, effect and page numbers are not reserved: each firmware's layout gives
+them out and keeps them for its projects. In `machine.json`, ask for an engine
+from 34 to 62 (a page from 82 to 127; an effect from the free ones); a build
+uses them when they are free, otherwise the next free ones.
 `python sdk.py catalog check` in the Open-XY repository validates the catalog
-before you open the pull request. For your own builds you need no reservation:
-`sdk.py new` picks an identity that neither the bundled machines nor the
-catalog holds.
+before you open the pull request. Your own builds need no reservation.
 
 ## 2. Meet the requirements
 
@@ -41,6 +35,7 @@ catalog holds.
 | It fits beside the bundled machines in the shared 2044 KiB module | The firmware compile prints each machine's share |
 | A licence that allows redistribution in firmware: `LICENSE` at the root, and `vendor/LICENSE` for vendored code | Review |
 | A short `description` in `machine.json`; a builder `icon` is optional | `sdk.py test` |
+| Its CPU estimate stays under the aim, or you have measured it on a device | `sdk.py test` prints it |
 
 ## 3. Release and submit
 
@@ -48,8 +43,7 @@ catalog holds.
 2. Open a pull request against the catalog that changes your entry to:
 
    ```json
-   {"id": "<id>", "kind": "synth", "identity": {"engine": 12, "page": 90},
-    "maintainer": "<your GitHub user>", "status": "published",
+   {"id": "<id>", "kind": "synth", "maintainer": "<your GitHub user>", "status": "published",
     "repository": "https://github.com/<you>/<repo>", "tag": "v1.0.0",
     "commit": "<the tag's full commit SHA>", "path": "machines/<id>"}
    ```
@@ -67,11 +61,14 @@ release, then the main site with the next Open-XY release.
 ## 4. Updates
 
 Tag a new version and open a pull request that moves your entry's `tag` and
-`commit`. It is checked the same way and reviewed as a diff. A change of ID or
-identity is refused: release a new machine instead.
+`commit`. It is checked the same way and reviewed as a diff. Projects save each
+control's value by its position, so keep every published control at its
+position with its id and range: removing, reordering or remapping one fails the
+catalog check unless a maintainer approves it. Add new controls at the end. A
+change of ID or kind is refused: release a new machine instead.
 
 ## Removal
 
 A maintainer can remove a machine that is abandoned or harmful, or you can ask
-for removal. Its entry stays as `"status": "retired"`, so its identity is never
-reused and old projects never load a different machine.
+for removal. Its entry stays as `"status": "retired"`, so its ID is never
+reused.
