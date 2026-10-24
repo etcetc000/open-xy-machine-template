@@ -22,7 +22,8 @@ plucked-string synth with an animated screen, and
 ## Start
 
 1. Use this template on GitHub, and clone the Open-XY SDK next to it:
-   `git clone https://github.com/etcetc000/open-xy`. Follow its
+   `git clone https://github.com/etcetc000/open-xy` (its default branch,
+   `staging`, is the current SDK). Follow its
    [first machine](https://github.com/etcetc000/open-xy/blob/staging/docs/first-machine.md)
    guide to install Python, Node and Clang.
 2. Replace the examples with your own machines, each with an ID of its own:
