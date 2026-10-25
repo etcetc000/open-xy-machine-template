@@ -64,6 +64,17 @@ plucked-string synth with an animated screen, and
 Keep build and preview output outside this repository: the SDK refuses output
 inside a machine folder.
 
+## Effects with delay memory (SDK 1.1)
+
+An effect's state fits in the OP-XY's 476-byte effect slot. For a delay line,
+declare `"bufferBytes"` in `definition.json` `resources` (whole words, up to
+512 KiB) and `"sdk": "1.1"` in `machine.json`; `process` then takes an
+`opxy::Buffer`, the send slot's scratch memory the OP-XY's own delay uses. It
+is never cleared, so read only what the effect wrote since `initialize`, and
+write silence when `buffer.words` is null. See
+[effect buffers](https://github.com/etcetc000/open-xy/blob/staging/docs/api.md#effect-buffers)
+and [Ping Pong](https://github.com/etcetc000/open-xy-pingpong) for a worked example.
+
 ## CI
 
 [.github/workflows/machines.yml](.github/workflows/machines.yml) checks every
