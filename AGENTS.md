@@ -13,9 +13,9 @@ effects). It is not the SDK.
   SDK lacks something a machine needs, tell the user. It becomes a separate
   pull request to the SDK's `staging` branch, not part of the machine.
 - **Read the examples first:** `machines/mysynth` and `machines/myeffect` here,
-  then [Karplus](https://github.com/etcetc000/open-xy-karplus) (a synth with an
-  animated screen) and [Ping Pong](https://github.com/etcetc000/open-xy-pingpong)
-  (a send effect with delay memory). The SDK's
+  then Open-XY's [core machines](https://github.com/etcetc000/open-xy-core-machines), especially
+  [Karplus](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/karplus) (a synth with an animated screen) and
+  [Ping Pong](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/pingpong) (a send effect with delay memory). The SDK's
   [first machine](https://github.com/etcetc000/open-xy/blob/staging/docs/first-machine.md)
   guide and [machine API](https://github.com/etcetc000/open-xy/blob/staging/docs/api.md)
   are the reference.
