@@ -35,6 +35,7 @@ before you open the pull request. Your own builds need no reservation.
 | It fits beside the bundled machines in the shared 2044 KiB module | The firmware compile prints each machine's share |
 | A licence that allows redistribution in firmware: `LICENSE` at the root, and `vendor/LICENSE` for vendored code | Review |
 | A short `description` in `machine.json`; a builder `icon` is optional | `sdk.py test` |
+| It follows the [UX conventions](https://github.com/etcetc000/open-xy/blob/staging/docs/ux.md): controls, pages, screen and motion | Review |
 | Its CPU estimate stays under the aim, or you have measured it on a device | `sdk.py test` prints it |
 
 ## 3. Release and submit

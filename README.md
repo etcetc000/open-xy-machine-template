@@ -14,8 +14,10 @@ Each folder is one machine: `definition.json` (controls, presets, resources),
 `machine.json` (kind, SDK version, the numbers it asks for), its C++ and, for a
 synth, its artwork. `tests/` holds the machine's own checks.
 
-These are minimal starting points. For worked examples, published through the
-catalog, see Open-XY's [core machines](https://github.com/etcetc000/open-xy-core-machines), among them
+These are minimal starting points. Follow the SDK's
+[UX conventions](https://github.com/etcetc000/open-xy/blob/staging/docs/ux.md) for
+controls, pages, screens and motion, so your machine plays like the rest. For
+worked examples, published through the catalog, see Open-XY's [core machines](https://github.com/etcetc000/open-xy-core-machines), among them
 [Karplus](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/karplus), a plucked-string synth with an animated screen, and
 [Ping Pong](https://github.com/etcetc000/open-xy-core-machines/tree/main/machines/pingpong), a send effect.
 
