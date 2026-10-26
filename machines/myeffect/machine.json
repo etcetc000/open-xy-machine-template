@@ -4,7 +4,7 @@
   "kind": "effect",
   "description": "My Effect",
   "identity": {
-    "effect": 2,
+    "effect": 23,
     "page": 21
   },
   "dryParameter": "dry"
