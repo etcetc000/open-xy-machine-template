@@ -22,8 +22,9 @@ effects). It is not the SDK.
 - **Each machine keeps its own folder,** ID and `tests/`. Keep build and preview
   output outside this repository.
 - **Submitting to the builder** follows [SUBMITTING.md](SUBMITTING.md): tag a
-  release here, then open a pull request against the SDK's `staging` branch
+  release here, then open a pull request against the SDK's `main` branch
   that changes **only** `catalog/machines.json`, with this machine's one entry.
+  A machine that needs SDK changes only on `staging` targets `staging` instead.
   The SDK's CI refuses a submission that changes anything else.
 - **Device operations,** such as copying firmware to an OP-XY, need the user's
   explicit instruction each time. Host checks do not measure device CPU.
