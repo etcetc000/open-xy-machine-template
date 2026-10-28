@@ -1,9 +1,14 @@
 # Submitting a machine to Open-XY
 
 The Open-XY builder ships the machines listed in its catalog,
-[`catalog/machines.json`](https://github.com/etcetc000/open-xy/blob/staging/catalog/machines.json)
+[`catalog/machines.json`](https://github.com/etcetc000/open-xy/blob/main/catalog/machines.json)
 in the Open-XY repository. Your machine stays in your repository; the catalog
 pins one tagged commit of it. You never copy code into Open-XY.
+
+Catalog pull requests target Open-XY's `main` branch and change only
+`catalog/machines.json`. If your machine needs SDK changes that are only on
+`staging` (not yet released), target `staging` instead; it reaches `main` with
+the next Open-XY release.
 
 ## 1. Reserve the ID
 
@@ -20,8 +25,8 @@ Engine, effect and page numbers are not reserved: each firmware's layout gives
 them out and keeps them for its projects. The `identity` in `machine.json` is
 only a preference, which `sdk.py new` fills in; a build uses it when free,
 otherwise the next free numbers, so you can leave it as generated.
-`python sdk.py catalog check` in the Open-XY repository validates the catalog
-before you open the pull request. Your own builds need no reservation.
+`python sdk.py catalog check --base origin/main` in the Open-XY repository
+validates the catalog before you open the pull request. Your own builds need no reservation.
 
 ## 2. Meet the requirements
 
@@ -56,8 +61,8 @@ before you open the pull request. Your own builds need no reservation.
    [catalog](https://github.com/etcetc000/open-xy/blob/staging/docs/catalog.md)
    for every field and what review covers.
 
-Merged machines reach the beta site (beta.open-xy.com) with the next catalog
-release, then the main site with the next Open-XY release.
+Machines merged into `main` reach open-xy.com with the next catalog release, and
+beta.open-xy.com with the next beta release.
 
 ## 4. Updates
 
