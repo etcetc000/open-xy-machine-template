@@ -37,25 +37,32 @@ validates the catalog before you open the pull request. Your own builds need no 
 | Audio callbacks never allocate, block, log or do I/O | Review |
 | Your own checks in `tests/*.cpp` pass: sound bounds, tuning, decay, whatever the machine promises | `sdk.py test` |
 | CI is green, including the firmware compile | Your repository's CI |
-| It fits beside the bundled machines in the shared 2044 KiB module | The firmware compile prints each machine's share |
+| It fits beside the bundled machines in the shared 2032 KiB module | The firmware compile prints each machine's share |
 | A licence that allows redistribution in firmware: `LICENSE` at the root, and `vendor/LICENSE` for vendored code | Review |
 | A short `description` in `machine.json`; a builder `icon` is optional | `sdk.py test` |
 | It follows the [UX conventions](https://github.com/etcetc000/open-xy/blob/staging/docs/ux.md): controls, pages, screen and motion | Review |
-| Its CPU estimate stays under the aim, or you have measured it on a device | `sdk.py test` prints it |
+| Its CPU estimate stays under the aim | `sdk.py test` prints it |
+| Measured on a device: at most the recommended 3.5% of the block budget at its heaviest setting (a synth's controls are swept, singly and at their heaviest positions together) | [Hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md); above 3.5% is accepted with a warning |
 
 ## 3. Release and submit
 
 1. Tag the commit to publish, for example `v1.0.0`, and push the tag.
-2. Open a pull request against the catalog that changes your entry to:
+2. Measure that exact commit on your OP-XY with the SDK's
+   [hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md): a profiling build (it sweeps a synth's
+   controls by default), three runs, then `profile report`. It writes
+   `catalog-cpu.json` and warns if the heaviest setting is above the recommended
+   3.5%. No OP-XY? Say so in the pull request; a maintainer can measure it.
+3. Open a pull request against the catalog that changes your entry to:
 
    ```json
    {"id": "<id>", "kind": "synth", "maintainer": "<your GitHub user>", "status": "published",
     "repository": "https://github.com/<you>/<repo>", "tag": "v1.0.0",
-    "commit": "<the tag's full commit SHA>", "path": "machines/<id>"}
+    "commit": "<the tag's full commit SHA>", "path": "machines/<id>",
+    "cpu": {"...": "the cpu member of catalog-cpu.json"}}
    ```
 
    `path` is the machine's folder in your repository (`"."` at the root).
-3. The catalog's CI fetches exactly that commit and runs the same checks as your
+4. The catalog's CI fetches exactly that commit and runs the same checks as your
    CI (`python sdk.py catalog test` runs them locally). A maintainer then
    reviews the code once, in full, and listens to it. See the
    [catalog](https://github.com/etcetc000/open-xy/blob/staging/docs/catalog.md)
@@ -66,8 +73,9 @@ beta.open-xy.com with the next beta release.
 
 ## 4. Updates
 
-Tag a new version and open a pull request that moves your entry's `tag` and
-`commit`. It is checked the same way and reviewed as a diff. Projects save each
+Tag a new version, measure it again, and open a pull request that moves your
+entry's `tag`, `commit` and `cpu` together. It is checked the same way and
+reviewed as a diff. Projects save each
 control's value by its position, so keep every published control at its
 position with its id and range: removing, reordering or remapping one fails the
 catalog check unless a maintainer approves it. Add new controls at the end. A
