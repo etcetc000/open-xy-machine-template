@@ -49,7 +49,7 @@ validates the catalog before you open the pull request. Your own builds need no 
 1. Tag the commit to publish, for example `v1.0.0`, and push the tag.
 2. Measure that exact commit on your OP-XY with the SDK's
    [hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md): a profiling build (it sweeps a synth's
-   controls by default), three runs, then `profile report`. It writes
+   controls by default), one run, then `profile report`. It writes
    `catalog-cpu.json` and warns if the heaviest setting is above the recommended
    3.5%. No OP-XY? Say so in the pull request; a maintainer can measure it.
 3. Open a pull request against the catalog that changes your entry to:
