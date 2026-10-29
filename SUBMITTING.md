@@ -42,7 +42,7 @@ validates the catalog before you open the pull request. Your own builds need no 
 | A short `description` in `machine.json`; a builder `icon` is optional | `sdk.py test` |
 | It follows the [UX conventions](https://github.com/etcetc000/open-xy/blob/staging/docs/ux.md): controls, pages, screen and motion | Review |
 | Its CPU estimate stays under the aim | `sdk.py test` prints it |
-| Measured on a device: at most the recommended 3.5% of the block budget at its heaviest setting (a synth's controls are swept) | [Hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md); above 3.5% is accepted with a warning |
+| Measured on a device: at most the recommended 3.5% of the block budget at its heaviest setting (a synth's controls are swept, singly and at their heaviest positions together) | [Hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md); above 3.5% is accepted with a warning |
 
 ## 3. Release and submit
 

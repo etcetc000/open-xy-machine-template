@@ -29,9 +29,11 @@ effects). It is not the SDK.
 - **Measure CPU on a device before submitting.** A catalog entry needs a
   hardware `cpu` record from the SDK's [hardware profiling](https://github.com/etcetc000/open-xy/blob/staging/docs/profiling.md):
   build with profiling (a synth's controls are swept by default), have the user
-  install it, then collect three runs and run `profile report`. A synth's record
-  is its heaviest swept setting. If the readout is above the **recommended 3.5%**
-  of the block budget, tell the user which setting is heaviest and suggest making
+  install it, then collect three runs and run `profile report`. The sweep moves
+  each control through its positions, then runs every control at its heaviest
+  position together; a synth's record is the heaviest of those runs. If the
+  readout is above the **recommended 3.5%** of the block budget, tell the user
+  which setting is heaviest (or that the combination is) and suggest making
   that path lighter before submitting; a heavier machine is still accepted, with
   a warning. Never put a host estimate in the record.
 - **Device operations,** such as copying firmware to an OP-XY, need the user's
