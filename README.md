@@ -9,6 +9,7 @@ them by tagging, and the Open-XY catalog pins the version it ships.
 | --- | --- |
 | [machines/mysynth](machines/mysynth) | Synth: voices, a 64-sample render and a drawing display |
 | [machines/myeffect](machines/myeffect) | Send effect: in-place stereo processing on the FX page |
+| [machines/myeffect8](machines/myeffect8) | Send effect with eight controls on a page of its own: a stereo chorus on the SDK's [effect page](https://github.com/etcetc000/open-xy/blob/staging/docs/display.md#effect-page) (SDK 1.8) |
 
 Each folder is one machine: `definition.json` (controls, presets, resources),
 `machine.json` (kind, SDK version, the numbers it asks for), its C++ and, for a
@@ -33,6 +34,13 @@ worked examples, published through the catalog, see Open-XY's [core machines](ht
    ```sh
    python ../open-xy/sdk.py new --kind synth --id <id> --name "<Name>" --out machines/<id>
    python ../open-xy/sdk.py new --kind effect --id <id> --name "<Name>" --out machines/<id>
+   ```
+
+   Or start from one of the examples here, under your own ID and name; `--from`
+   renames its C++ namespace, artwork IDs and tests:
+
+   ```sh
+   python ../open-xy/sdk.py new --from machines/myeffect8 --id <id> --name "<Name>" --out machines/<id>
    ```
 
    Keep one machine, or several. A single machine may also sit at the
