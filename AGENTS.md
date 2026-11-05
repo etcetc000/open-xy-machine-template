@@ -36,5 +36,14 @@ effects). It is not the SDK.
   which setting is heaviest (or that the combination is) and suggest making
   that path lighter before submitting; a heavier machine is still accepted, with
   a warning. Never put a host estimate in the record.
+- **Keep each machine's `QA.md`, its device checklist, current.** If a machine
+  has none, create it as [README.md](README.md) describes. With every change you
+  make, not only at the end, update the lines a person would check on the device:
+  name its controls, add sections for its own behavior and remove lines that no
+  longer apply. After local testing and audition, ask the user to run it as one
+  pass on the device. When they are getting ready to publish, recommend a full
+  pass on a build of the exact commit the catalog entry will pin, unless one
+  already passed for that commit. Once the entry is released, remind them of the
+  checklist's "In the builder" checks.
 - **Device operations,** such as copying firmware to an OP-XY, need the user's
   explicit instruction each time. Host checks do not measure device CPU.

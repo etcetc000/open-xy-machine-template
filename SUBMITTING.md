@@ -52,7 +52,11 @@ validates the catalog before you open the pull request. Your own builds need no 
    controls by default), three runs, then `profile report`. It writes
    `catalog-cpu.json` and warns if the heaviest setting is above the recommended
    3.5%. No OP-XY? Say so in the pull request; a maintainer can measure it.
-3. Open a pull request against the catalog that changes your entry to:
+3. Run the machine's device checklist, `QA.md` (see [README.md](README.md)), as
+   one full pass on a build of that commit, unless one already passed for it.
+   This is recommended: the catalog doesn't check it, but host tests can't hear
+   the sound or see the screen.
+4. Open a pull request against the catalog that changes your entry to:
 
    ```json
    {"id": "<id>", "kind": "synth", "maintainer": "<your GitHub user>", "status": "published",
@@ -62,18 +66,19 @@ validates the catalog before you open the pull request. Your own builds need no 
    ```
 
    `path` is the machine's folder in your repository (`"."` at the root).
-4. The catalog's CI fetches exactly that commit and runs the same checks as your
+5. The catalog's CI fetches exactly that commit and runs the same checks as your
    CI (`python sdk.py catalog test` runs them locally). A maintainer then
    reviews the code once, in full, and listens to it. See the
    [catalog](https://github.com/etcetc000/open-xy/blob/staging/docs/catalog.md)
    for every field and what review covers.
 
 Machines merged into `main` reach open-xy.com with the next catalog release, and
-beta.open-xy.com with the next beta release.
+beta.open-xy.com with the next beta release. Once yours is there, run the
+checklist's "In the builder" checks.
 
 ## 4. Updates
 
-Tag a new version, measure it again, and open a pull request that moves your
+Tag a new version, run `QA.md` and measure it again, and open a pull request that moves your
 entry's `tag`, `commit` and `cpu` together. It is checked the same way and
 reviewed as a diff. Projects save each
 control's value by its position, so keep every published control at its
