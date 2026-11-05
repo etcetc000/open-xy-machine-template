@@ -62,6 +62,21 @@ worked examples, published through the catalog, see Open-XY's [core machines](ht
    ([building firmware](https://github.com/etcetc000/open-xy/blob/staging/docs/build.md)).
    Pass the previous build's `layout.json` with `--layout` so your machines
    keep their numbers, and your projects their instruments.
+6. Check the machine on the device with a checklist, `QA.md`: one pass, top to
+   bottom, in one project. Host tests can't hear the sound or see the screen.
+   The SDK writes the checks every synth or effect needs. Generate them in a
+   folder of their own, keep only `QA.md`, then delete that folder:
+
+   ```sh
+   python ../open-xy/sdk.py new --repository --kind <synth or effect> --id <id> --name "<Name>" --out ../qa-<id>
+   cp ../qa-<id>/QA.md machines/<id>/QA.md
+   ```
+
+   Its first paragraph runs the host tests with `--machine .`: change that to
+   `--machine machines/<id>`. Keep the file in step with the machine: name its
+   controls, add sections for its own behavior and remove lines that can't
+   apply. Run it before each release, and note the SDK commit and firmware each
+   full pass used. `sdk.py test` and firmware builds ignore the file.
 
 Keep build and preview output outside this repository: the SDK refuses output
 inside a machine folder.
