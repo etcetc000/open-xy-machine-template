@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "sdk": "1.8",
+  "sdk": "1.10",
   "kind": "effect",
   "description": "My Effect 8",
   "dryParameter": "dry"
