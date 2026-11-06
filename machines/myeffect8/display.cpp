@@ -9,7 +9,7 @@ inline void display_reset(DisplayState& state) { state.page.reset(); }
 // maps to; a choice shows its name.
 inline void display(DisplayState& state, const opxy::draw::Input& input, Frame& frame) {
     using namespace opxy::draw;
-    const char* const titles[8] = {"Rate", "Depth", "Delay", "Feedback", "Shape", "Stereo", "Level", "Dry"};
+    const char* const titles[8] = {"rate", "depth", "delay", "feedback", "shape", "stereo", "level", "dry"};
     char values[8][header_capacity];
     for (opxy::u32 i = 0; i < 8; ++i) header_number(values[i], header_capacity, input.slots[i]);
     copy(values[4], header_capacity, input.slots[4] >> 16 < 16384 ? "sine" : "tri");
