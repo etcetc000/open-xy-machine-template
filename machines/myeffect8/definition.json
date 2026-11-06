@@ -5,7 +5,7 @@
   "parameters": [
     {
       "id": "rate",
-      "label": "Rate",
+      "label": "rate",
       "default": 0.5,
       "mapping": {
         "kind": "anchors",
@@ -21,7 +21,7 @@
     },
     {
       "id": "depth",
-      "label": "Depth",
+      "label": "depth",
       "default": 0.5,
       "mapping": {
         "kind": "linear",
@@ -32,7 +32,7 @@
     },
     {
       "id": "delay",
-      "label": "Delay",
+      "label": "delay",
       "default": 0.25,
       "mapping": {
         "kind": "linear",
@@ -43,7 +43,7 @@
     },
     {
       "id": "feedback",
-      "label": "Feedback",
+      "label": "feedback",
       "default": 0,
       "mapping": {
         "kind": "linear",
@@ -54,7 +54,7 @@
     },
     {
       "id": "shape",
-      "label": "Shape",
+      "label": "shape",
       "control": 0,
       "default": 0,
       "mapping": {
@@ -68,7 +68,7 @@
     },
     {
       "id": "stereo",
-      "label": "Stereo",
+      "label": "stereo",
       "control": 1,
       "default": 0.5,
       "mapping": {
@@ -80,7 +80,7 @@
     },
     {
       "id": "level",
-      "label": "Level",
+      "label": "level",
       "control": 2,
       "default": 0.75,
       "mapping": {
@@ -92,7 +92,7 @@
     },
     {
       "id": "dry",
-      "label": "Dry",
+      "label": "dry",
       "control": 3,
       "default": 1,
       "mapping": {
